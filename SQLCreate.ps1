@@ -32,10 +32,12 @@ if(!$RGName.ResourceGroupName){
 2. Create a new SQL Database on the existing SQL server
 3. Registering new firewall rule to allow access to SQL Server.
 #>
+$var 
 
 $DBServer =New-AzureRmSqlServer -ServerName $SQLServerName -Location $location -ResourceGroupName $RG.ResourceGroupName `
--SqlAdministratorCredentials $Cred -Verbose -ErrorAction SilentlyContinue
+-SqlAdministratorCredentials $Cred -Verbose -ErrorAction SilentlyContinue -InformationVariable $var 
 
+Write-Output -InputObject $var 
   
 $DBName = New-AzureRmSqlDatabase -DatabaseName $DBName -ServerName $DBServer.ServerName`
  -ResourceGroupName $RG.ResourceGroupName -MaxSizeBytes 2GB -ErrorAction SilentlyContinue
